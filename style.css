@@ -9,14 +9,26 @@
   padding: 0;
 }
 
+/* header section */
+.header__title {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* main section */
+.main {
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 50%;
+}
+
 .container {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  /* width: 256px; */
-  /* height: 256px; */
-  margin-top: 5rem;
 }
 
 .cell {
