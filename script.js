@@ -1,55 +1,66 @@
 // selections
 const container = document.querySelector("#container");
-const newGrid = document.querySelector(".new__grid-btn");
-const eraserBtn = document.querySelector(".eraser__btn");
+const erasorBtn = document.querySelector(".eraser__btn");
 const rainbowBtn = document.querySelector(".rainbow__btn");
+const blackBtn = document.querySelector(".black");
+const newSizeInput = document.querySelector("#newSize");
+const newSizeBtn = document.querySelector(".new__size-btn");
 
-const coloring = function (div) {
-  div.addEventListener("mouseover", () => {
-    div.style.background = "red";
-  });
+const coloring = function () {
+  this.style.background = "#000";
 };
 
-const rainbowColor = function (div) {
-  let color = [];
-  for (let i = 0; i < 3; i++) {
-    color.push(Math.floor(Math.random() * 256));
-  }
-  let newColor = "rgb(" + color.join(", ") + ")";
-  rainbowBtn.addEventListener("click", () => {
-    div.addEventListener("mouseover", () => {
-      div.style.background = newColor;
-    });
-  });
+const randomColor = function () {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  this.style.background = `rgb(${r},${g},${b})`;
 };
 
-const eraser = function (div) {
-  eraserBtn.addEventListener("click", () => {
-    div.addEventListener("mouseover", () => {
-      div.style.background = "#fff";
-    });
-  });
+const erasor = function () {
+  this.style.background = "#fff";
 };
 
 const board = function (size) {
-  //   let amount = size * size;
-  for (let row = 0; row < 257; row++) {
-    // for (let col = 0; col < size; col++) {
+  const amount = size * size;
+
+  const cellSize = 100 / size;
+
+  container.innerHTML = "";
+  for (let i = 0; i < amount; i++) {
     const div = document.createElement("div");
     div.classList.add("cell");
+    div.style.flex = `0 0 ${cellSize}%`;
+    div.style.height = `${500 / size}px`;
     container.appendChild(div);
-    rainbowColor(div);
-    coloring(div);
-    eraser(div);
-    // }
+    blackBtn.addEventListener("click", () => {
+      div.removeEventListener("mouseover", erasor);
+      div.addEventListener("mouseover", coloring);
+    });
+
+    erasorBtn.addEventListener("click", () => {
+      div.addEventListener("mouseover", coloring);
+      div.addEventListener("mouseover", erasor);
+    });
+
+    rainbowBtn.addEventListener("click", () => {
+      div.removeEventListener("mouseover", coloring);
+      div.removeEventListener("mouseover", erasor);
+      div.addEventListener("mouseover", randomColor);
+    });
   }
 };
 
-// newGrid.addEventListener("click", () => {
-//   let inp = prompt("Put number from 1-100");
-//   if (inp < 1 || inp > 100) {
-//     inp = prompt("from 1-100!");
-//   }
-// });
+const newSize = function () {
+  newSizeBtn.addEventListener("click", () => {
+    let input = Number(newSizeInput.value);
 
-board();
+    if (input >= 1 && input <= 100) {
+      board(input);
+    } else {
+      alert("Please a num between 1-100");
+    }
+  });
+};
+
+newSize();
