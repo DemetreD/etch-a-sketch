@@ -2,10 +2,24 @@
 const container = document.querySelector("#container");
 const newGrid = document.querySelector(".new__grid-btn");
 const eraserBtn = document.querySelector(".eraser__btn");
+const rainbowBtn = document.querySelector(".rainbow__btn");
 
 const coloring = function (div) {
   div.addEventListener("mouseover", () => {
     div.style.background = "red";
+  });
+};
+
+const rainbowColor = function (div) {
+  let color = [];
+  for (let i = 0; i < 3; i++) {
+    color.push(Math.floor(Math.random() * 256));
+  }
+  let newColor = "rgb(" + color.join(", ") + ")";
+  rainbowBtn.addEventListener("click", () => {
+    div.addEventListener("mouseover", () => {
+      div.style.background = newColor;
+    });
   });
 };
 
@@ -24,6 +38,7 @@ const board = function (size) {
     const div = document.createElement("div");
     div.classList.add("cell");
     container.appendChild(div);
+    rainbowColor(div);
     coloring(div);
     eraser(div);
     // }
