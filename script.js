@@ -21,7 +21,6 @@ const erasor = function () {
   this.style.background = "#fff";
 };
 
-// let currentMode = "Black";
 const board = function (size) {
   const amount = size * size;
 
@@ -34,23 +33,28 @@ const board = function (size) {
     div.style.flex = `0 0 ${cellSize}%`;
     div.style.height = `${500 / size}px`;
     container.appendChild(div);
+
+    div.addEventListener("mouseover", coloring);
     containerColor.addEventListener("click", () => {
       div.removeEventListener("mouseover", erasor);
       div.addEventListener("mouseover", coloring);
     });
 
     erasorBtn.addEventListener("click", () => {
+      currentMode = "erasor";
       div.addEventListener("mouseover", coloring);
       div.addEventListener("mouseover", erasor);
     });
 
     rainbowBtn.addEventListener("click", () => {
+      currentMode = "random";
       div.removeEventListener("mouseover", coloring);
       div.removeEventListener("mouseover", erasor);
       div.addEventListener("mouseover", randomColor);
     });
   }
 };
+
 //default board grid
 board(16);
 
