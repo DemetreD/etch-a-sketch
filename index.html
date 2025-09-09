@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
@@ -11,15 +17,15 @@
       <h1 class="header__title">Etch A Sketch</h1>
     </header>
     <main class="main">
-      <div class="button_container">
+      <div class="container" id="container"></div>
+      <div class="button__container">
         <input type="number" id="newSize" />
-        <button class="new__size-btn">New Size</button>
+        <button class="new__size-btn btn">New Size</button>
         <label for="">Choose color</label>
         <input type="color" class="container__color" id="containerColor" />
-        <button class="eraser__btn">Eraser</button>
-        <button class="rainbow__btn">Random</button>
+        <button class="eraser__btn btn">Eraser</button>
+        <button class="rainbow__btn btn">Random</button>
       </div>
-      <div class="container" id="container"></div>
     </main>
     <script src="./script.js"></script>
   </body>
