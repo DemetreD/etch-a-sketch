@@ -2,12 +2,12 @@
 const container = document.querySelector("#container");
 const erasorBtn = document.querySelector(".eraser__btn");
 const rainbowBtn = document.querySelector(".rainbow__btn");
-const blackBtn = document.querySelector(".black");
 const newSizeInput = document.querySelector("#newSize");
 const newSizeBtn = document.querySelector(".new__size-btn");
+const containerColor = document.querySelector("#containerColor");
 
 const coloring = function () {
-  this.style.background = "#000";
+  this.style.background = containerColor.value;
 };
 
 const randomColor = function () {
@@ -21,6 +21,7 @@ const erasor = function () {
   this.style.background = "#fff";
 };
 
+// let currentMode = "Black";
 const board = function (size) {
   const amount = size * size;
 
@@ -33,7 +34,7 @@ const board = function (size) {
     div.style.flex = `0 0 ${cellSize}%`;
     div.style.height = `${500 / size}px`;
     container.appendChild(div);
-    blackBtn.addEventListener("click", () => {
+    containerColor.addEventListener("click", () => {
       div.removeEventListener("mouseover", erasor);
       div.addEventListener("mouseover", coloring);
     });
@@ -50,6 +51,8 @@ const board = function (size) {
     });
   }
 };
+//default board grid
+board(16);
 
 const newSize = function () {
   newSizeBtn.addEventListener("click", () => {
@@ -63,4 +66,5 @@ const newSize = function () {
   });
 };
 
+//users new board grid
 newSize();
